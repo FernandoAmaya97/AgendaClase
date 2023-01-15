@@ -15,7 +15,7 @@ module.exports = {      //lo b¿vamos a trabajar como objeto
     },
     get: (req, res) => {
         const id = req.params.id;
-        contacto.find({status: 1, _id: id, userId: req.user._id})
+        contacto.findOne({status: 1, _id: id, userId: req.user._id})
         .then(data => {
             res.send(data);
         })
@@ -29,10 +29,22 @@ module.exports = {      //lo b¿vamos a trabajar como objeto
 
         data.userId =req.user._id
 
+        console.log(req.file);
+
         contacto.create(data).then(response => {
             res.send(response);
         }); 
-    }
+    },
+    actualizar: (req, res) => {
+        const id = req.params.id;
+        contacto.findByIdAndUpdate(id, req.body, {new: true})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(400).send('algo salió mal');
+        });
+    } 
 }
 
 //find, findOne, findBiId, create, save
