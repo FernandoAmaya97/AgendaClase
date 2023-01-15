@@ -44,7 +44,17 @@ module.exports = {      //lo b¿vamos a trabajar como objeto
         .catch(err => {
             res.status(400).send('algo salió mal');
         });
-    } 
+    },
+    eliminar: (req, res) => {
+        const id = req.params.id;
+        contacto.findByIdAndUpdate(id, {$set: {status:0}}, {new: true})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(400).send('algo salió mal');
+        });
+    }
 }
 
 //find, findOne, findBiId, create, save
