@@ -27,6 +27,7 @@ router.use('/contactos', authMiddleware);
 router.get('/contactos', contactosController.getAll); //nos traemos el getAll
 router.get('/contactos/:id', contactosController.get);
 router.post('/contactos', upload.single('foto'), contactosController.crear);      //para enviar datos
+router.put('/contactos/:id', contactosController.actualizar);
 
 //usuarios
 router.post('/registro', usuariosController.registro)
