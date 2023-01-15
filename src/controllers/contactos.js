@@ -33,6 +33,10 @@ module.exports = {      //lo b¿vamos a trabajar como objeto
 
         contacto.create(data).then(response => {
             res.send(response);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(400);
         }); 
     },
     actualizar: (req, res) => {
